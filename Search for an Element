@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stddef.h>
+
+const int *find_element(const int *arr, size_t n, int key)
+{
+    while (n--)
+    {
+        if (*arr == key)
+            return arr;
+
+        arr++;
+    }
+
+    return NULL;
+}
+
+int main()
+{
+    int arr[] = {5, 10, 15, 20};
+    int key = 15;
+
+    const int *result = find_element(arr, 4, key);
+
+    if (result != NULL)
+        printf("Found value = %d\n", *result);
+    else
+        printf("Element not found\n");
+
+    return 0;
+}
