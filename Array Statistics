@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int array_stats(const int *arr, size_t n,
+                int *out_min, int *out_max, long *out_sum)
+{
+    if (arr == NULL || out_min == NULL || out_max == NULL ||
+        out_sum == NULL || n == 0)
+        return -1;
+
+    *out_min = *arr;
+    *out_max = *arr;
+    *out_sum = 0;
+
+    for (size_t i = 0; i < n; i++)
+    {
+        if (*(arr + i) < *out_min)
+            *out_min = *(arr + i);
+
+        if (*(arr + i) > *out_max)
+            *out_max = *(arr + i);
+
+        *out_sum += *(arr + i);
+    }
+
+    return 0;
+}
+
+int main()
+{
+    int arr[] = {4, -2, 7, 3};
+    int min, max;
+    long sum;
+
+    array_stats(arr, 4, &min, &max, &sum);
+
+    printf("min = %d, max = %d, sum = %ld\n",
+           min, max, sum);
+
+    return 0;
+}
